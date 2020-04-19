@@ -5,6 +5,7 @@ app=Flask(__name__)
 app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 @app.route('/', methods=['GET', 'POST'])
 def main():
+  global form
   form=enter() 
   res=requests.get("https://corona.lmao.ninja/v2/countries/Burundi").json()
   if form.validate_on_submit():
@@ -24,6 +25,15 @@ def main():
   casesPerOneMillion=res["casesPerOneMillion"]
   continent=res["continent"]
   return render_template("index.html",capital=capital,code=code,name=name,form=form,flag=flag,cases=cases,todaycases=todaycases,deaths=deaths,todayDeaths=todayDeaths,recovered=recovered,casesPerOneMillion=casesPerOneMillion,continent=continent)
+@app.route('/continents', methods=['GET', 'POST'])
+def continents():
+    form=enter()  
+    res=requests.get("https://corona.lmao.ninja/v2/continents/europe").json()
+    if form.validate_on_submit():
+  	   res=requests.get("https://corona.lmao.ninja/v2/continents/"+str(form.entry.data)).json()
+    elif 'message' in res:     
+        return render_template('404.html',msg=res['message'])
+    return render_template("continents.html",form=form,name=res["continent"],cases=res["cases"],todaycases=res["todayCases"],deaths=res["deaths"],todayDeaths=res["todayDeaths"],recovered=res["recovered"],active=res["active"],critical=res["critical"])
 
 if __name__ == '__main__':
     app.run(port=7080,debug=True)  # run on port 7080
