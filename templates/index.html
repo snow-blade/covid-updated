@@ -5,10 +5,10 @@
     <div class="additional">
       <div class="user-card">
         <div class="level center">
-          Cases/1M: 1240
+          Cases/1M: {{ casesPerOneMillion }}
         </div>
         <div class="points center">
-          Today cases: 12
+          Today cases: {{ todaycases }}
         </div>
         <img src={{ code }} class="center">
       </div>
@@ -20,7 +20,7 @@
         </div>
         <div class="coords">
           <span>Continent: {{ continent }}</span>
-          <span>City, Country</span>
+          <span>Capital: {{ capital }}</span>
         </div>
         <div class="stats">
           <div>
@@ -39,7 +39,7 @@
             <div class="value">{{ recovered }}</div>
           </div> 
           <div>
-            <div class="title">New cases</div>
+            <div class="title">.   New cases</div>
             <i class="fa fa-plus-square"></i>
             <div class="value">{{ todaycases }}</div>
           </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="general">
       <h1>{{ name }}</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a volutpat mauris, at molestie lacus. Nam vestibulum sodales odio ut pulvinar.</p>
+      <p>This data is updated daily on <a href="https://worldometers.info">worlometers</a> This app just shows in a more user-friendly way this data, this data was by no means collected by us</p>
       <span class="more">Mouse over the card for more info</span>
     </div>
   </div>
