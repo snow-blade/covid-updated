@@ -11,6 +11,7 @@ def main():
   	res=requests.get("https://corona.lmao.ninja/v2/countries/"+str(form.entry.data)).json()
   if 'message' in res:     # if there is an error 
         return render_template('404.html',msg=res['message'])
+  code="https://www.countryflags.io/"+res["countryInfo"]["iso2"].lower()+"/shiny/64.png"
   name=res["country"]
   flag=res["countryInfo"]["flag"]
   cases=res["cases"]
@@ -20,7 +21,7 @@ def main():
   recovered=res["recovered"]
   casesPerOneMillion=res["casesPerOneMillion"]
   continent=res["continent"]
-  return render_template("index.html",name=name,form=form,flag=flag,cases=cases,todaycases=todaycases,deaths=deaths,todayDeaths=todayDeaths,recovered=recovered,casesPerOneMillion=casesPerOneMillion,continent=continent)
+  return render_template("index.html",code=code,name=name,form=form,flag=flag,cases=cases,todaycases=todaycases,deaths=deaths,todayDeaths=todayDeaths,recovered=recovered,casesPerOneMillion=casesPerOneMillion,continent=continent)
 
 if __name__ == '__main__':
     app.run(port=7080,debug=True)  # run on port 7080
