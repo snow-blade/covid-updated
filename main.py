@@ -13,6 +13,7 @@ def main():
 def continents():
   return routes.continents()
 @app.route('/news')
+def news():
   return routes.news()
 if __name__ == '__main__':
     app.run(port=7080,debug=True)  # run on port 7080
